@@ -1,4 +1,4 @@
-const handler = require('./server.js').handler;
+const router = require('./router.js').router;
 const test = require('tape');
 
 const endpoints = [
@@ -17,7 +17,7 @@ endpoints.forEach((endpoint) => {
   test('GET :: ' + endpoint.url + ' :: returns ' + endpoint.status_code, (t) => {
     t.plan(2);
 
-    handler({url: endpoint.url}, {
+    router({url: endpoint.url}, {
       writeHead: (status, _content) => {
         t.equal(status, endpoint.status_code);
       },
